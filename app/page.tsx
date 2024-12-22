@@ -6,7 +6,6 @@ import { getWisdom } from "./actions/wisdom";
 export default async function Home() {
     
   const data: any = await getWisdom()
- 
   
   return (
    
@@ -25,3 +24,6 @@ export default async function Home() {
  
   );
 }
+
+
+export const dynamic = 'force-dynamic'
