@@ -1,12 +1,22 @@
-
+"use client"
 import Card from "@/components/Card";
 import { getWisdom } from "./actions/wisdom";
+import { useEffect, useState } from "react";
 
 
-export default async function Home() {
+export default  function Home() {
+
+  const [data, setData] = useState<any>() 
+
+  useEffect(() =>{
+    async function fetchData() {  
+      const value = await getWisdom()
+      setData(value)
+    }
     
-  const data: any = await getWisdom()
- 
+    fetchData
+  },[])
+    
   
   return (
    
