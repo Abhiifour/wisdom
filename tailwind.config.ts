@@ -9,8 +9,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
+        "secondary":"#E8C876",
+        "primary":"#E8BE68",
+        "border-color":"#BFBFBF",
+        "bg-color": "#E8E8E8",
         foreground: "var(--foreground)",
+      },
+      screens: {
+        // Define breakpoints with `max` for desktop-first
+        'lg': '1024px', // Desktop styles default
+        'md': { 'max': '1023px' }, // Medium screens and below
+        'sm': { 'max': '767px' },  // Small screens and below
       },
     },
   },
