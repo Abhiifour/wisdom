@@ -14,7 +14,7 @@ export default async function Home() {
     <div className="flex flex-col gap-4 mt-4 ">
     {
 
-    data.sort((a: any, b: any) => b.votes - a.votes).map((item: any) => 
+    data?.sort((a: any, b: any) => b.votes - a.votes).map((item: any) => 
       <Card key={item.id} id={item.id} data={item.data} createdBy={item.createdBy} votes={item.votes} comments={item.comments}/>
     ) 
     
