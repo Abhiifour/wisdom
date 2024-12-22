@@ -37,7 +37,7 @@ async function addVotes(){
 
 const router = useRouter()
     return (
-        <div className="w-full p-6 border rounded-lg bg-white shadow-md flex flex-col gap-4 ">
+        <div className="w-full p-6 border rounded-lg bg-white shadow-md flex flex-col gap-4 sm:p-2 sm:gap-2 sm:w-[98%]">
             <div className="top flex justify-between">
             <div className="hover:text-slate-600 cursor-pointer" onClick={() => {router.push('/wisdom')
                    updateWisdom(props.id,props.data,props.createdBy,props.votes)

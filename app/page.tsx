@@ -10,7 +10,7 @@ export default async function Home() {
   return (
    
    <div className="p-1 max-w-[800px] m-auto sm:w-full sm:p-2">
-    <div className="flex flex-col gap-4 mt-4 ">
+    <div className="flex flex-col gap-4 mt-4 sm:items-center ">
     {
 
     data?.sort((a: any, b: any) => b.votes - a.votes).map((item: any) => 
