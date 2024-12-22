@@ -1,7 +1,10 @@
 "use server"
-import client from "@/db"
 
+import { PrismaClient } from "@prisma/client/extension";
 
+// import client from "@/db"
+
+const client = new PrismaClient()
 
 export async function setWisdom(data : string , user : string){
     try {
