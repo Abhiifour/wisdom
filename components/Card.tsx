@@ -9,7 +9,7 @@ import Image from "next/image"
 import { addVote } from "@/app/actions/wisdom"
 import {  useState } from "react"
 
-
+import {motion} from 'framer-motion'
 
 
 export default function Card(props :{id:number ,data:string ,createdBy : string , votes : number , comments : number[]}){
@@ -37,9 +37,13 @@ async function addVotes(){
 
 const router = useRouter()
     return (
-        <div className="w-full p-6 border rounded-lg bg-white shadow-md flex flex-col gap-4 sm:p-2 sm:gap-2 sm:w-[98%]">
+        <motion.div className="w-full p-6 border rounded-lg bg-white shadow-md flex flex-col gap-2  sm:w-[98%]"
+        initial={{ y: 10, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{  duration: 0.2 }}
+        >
             <div className="top flex justify-between">
-            <div className="hover:text-slate-600 cursor-pointer" onClick={() => {router.push('/wisdom')
+            <div className="hover:text-slate-600 cursor-pointer max-w-[85%] sm:text-[16px]" onClick={() => {router.push('/wisdom')
                    updateWisdom(props.id,props.data,props.createdBy,props.votes)
                
                 
@@ -49,14 +53,14 @@ const router = useRouter()
             {
                 voteUpdate ?  
                  <div>
-                    <Image src={Arrow} width={20} height={20} alt="heart" />
+                    <Image src={Arrow} className="w-[20px] h-[20px] "  alt="heart" />
                     <div className="text-[14px] text-center text-slate-400">{votes === 0 ?'': votes}</div>
                  </div>
                 
                  :
                  <div className="cursor-pointer">
-                     <Image src={Heart} width={25} height={25} alt="heart" onClick={addVotes}/>
-                     <div className="text-[14px] text-center text-slate-400">{votes === 0 ?'': votes}</div>
+                     <Image src={Heart} className="h-[22px] w-[22px] sm:w-[20px] sm:h-[20px]" alt="heart" onClick={addVotes}/>
+                     <div className="text-[12px] text-center text-slate-400 sm:text-[10px]">{votes === 0 ?'': votes}</div>
                 </div> 
             }
            
@@ -66,15 +70,15 @@ const router = useRouter()
 
             {/* bottom */}
             <div className="flex gap-4 text-[12px] text-slate-500 items-center ">
-                <div ><span className="text-[16px]">🥷</span>@{props.createdBy}</div>
+                <div ><span className="text-[16px] sm:text-[12px]">🥷 </span>@{props.createdBy}</div>
                 {/* <div className="cursor-pointer"><span className="text-[16px]">🫶🏼</span>Upvote {props.votes}</div> */}
-                <div className="cursor-pointer" onClick={() => {router.push('/wisdom')
+                <div className="cursor-pointer sm:text-[12px]" onClick={() => {router.push('/wisdom')
                      updateWisdom(props.id,props.data,props.createdBy,props.votes)
-                }}><span className="text-[16px]">👀</span>comments{props.comments}</div>
+                }}><span className="text-[16px] sm:text-[12px]">👀 </span>comments{props.comments}</div>
             </div>
 
 
-        </div>
+        </motion.div>
     )
 }
 
