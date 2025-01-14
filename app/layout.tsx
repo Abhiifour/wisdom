@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 
 
@@ -27,13 +28,13 @@ export default function RootLayout({
 }: any) {
   return (
     <html lang="en">
-     
+      {/* <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"></meta> */}
       <body
-        className="bg-bg-color font-serif"
+        className="bg-bg-color  w-[600px] m-auto pt-6 font-Inter sm:w-full" 
       >
         <Navbar />
         {children}
-       
+        <Footer/>
       </body>
      
     </html>

@@ -10,12 +10,15 @@
     "postinstall": "npx prisma generate"
   },
   "dependencies": {
+    "@lottiefiles/dotlottie-react": "^0.12.1",
     "@prisma/client": "^6.0.1",
     "framer-motion": "^11.15.0",
+    "lucide-react": "^0.471.1",
     "next": "15.1.0",
     "prisma": "^6.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-icons": "^5.4.0",
     "recoil": "^0.7.7",
     "zustand": "^5.0.2"
   },

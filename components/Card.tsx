@@ -3,83 +3,85 @@
 import { useRouter } from "next/navigation"
 import Heart from "@/public/heartO.png"
 import Arrow from "@/public/arrow.png"
-
 import { useWisdomState } from "@/app/store/atoms/wisdomAtom"
 import Image from "next/image"
 import { addVote } from "@/app/actions/wisdom"
-import {  useState } from "react"
+import { useState } from "react"
+import { BiSolidLike } from "react-icons/bi";
+import { FaAnglesUp } from "react-icons/fa6";
+import { FaHeart } from "react-icons/fa6";
+import { TiUser } from "react-icons/ti";
+import { FaRegComment } from "react-icons/fa";
 
-import {motion} from 'framer-motion'
+export default function Card(props: {
+  id: number
+  data: string
+  createdBy: string
+  votes: number
+  comments: number[]
+}) {
+  const [voteUpdate, setVoteUpdate] = useState<boolean>(false)
+  const [votes, setVotes] = useState<number>(props.votes)
+  const updateWisdom = useWisdomState((state) => state.updateWisdom)
+  const router = useRouter()
 
-
-export default function Card(props :{id:number ,data:string ,createdBy : string , votes : number , comments : number[]}){
-const [voteUpdate , setVoteUpdate] = useState<boolean>(false)
-const[votes , setVotes] = useState<number>(props.votes)
-const updateWisdom = useWisdomState((state) => state.updateWisdom)
-const wisdomState = useWisdomState((state) => state.id)
-
-async function addVotes(){
-   
+  async function addVotes() {
     setVotes(votes + 1)
     setVoteUpdate(true)
-    await addVote(props.id);
+    await addVote(props.id)
+  }
+
+  const handleWisdomClick = () => {
+    router.push('/wisdom')
+    updateWisdom(props.id, props.data, props.createdBy, props.votes)
+  }
+
+  return (
+    <div className="w-full px-6 py-5 border border-gray-100 rounded-xl bg-white  hover:shadow-md transition-shadow shadow-lg" >
+      <div className="flex justify-between items-start gap-2 min-w-[95%]">
+        {/* Main Content */}
+        <div className="flex-1">
+          <p 
+            onClick={handleWisdomClick}
+            className="text-slate-700 text-[15px] leading-relaxed tracking-tight cursor-pointer hover:text-gray-500 mb-4 pr-1"
+          >
+            {props.data}
+          </p>
+          
+          {/* Meta Information */}
+          <div className="flex items-center gap-3 text-[12px] tracking-tight text-gray-400 font-light sm:gap-2">
+            <div className="flex items-center gap-1">
+              <TiUser/>
+              <span>{props.createdBy}</span>
+            </div>
+            <div 
+              onClick={handleWisdomClick}
+              className="flex items-center gap-1 cursor-pointer hover:text-gray-700"
+            >
+              <FaRegComment/>
+              <span> Comments {props.comments}</span>
+
+            </div>
+            <div className=" text-gray-400">• {votes > 0 && votes || 0} Votes</div>
+            <div className=" text-gray-400 hover:text-gray-500 cursor-pointer">
+            • Report
+            </div>
+          </div>
+        </div>
+
+        {/* Vote Button */}
+        <div className="flex  items-center min-w-[20px] text-[18px] mt-2">
+          {voteUpdate ? (
+           <FaAnglesUp  />
+          ) : (
+            <div className="cursor-pointer text-center flex text-red-600">
+              
+          
+              <FaHeart onClick={addVotes}/>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  )
 }
-
-// useEffect(()=>{
-//     async function getUpdatedWisdom(){
-//         const data = await getAWisdom(props.id)
-//         setVotes(data?.votes)
-//     }
-//     getUpdatedWisdom();
-
-
-// },[voteUpdate])
-
-const router = useRouter()
-    return (
-        <motion.div className="w-full p-6 border rounded-lg bg-white shadow-md flex flex-col gap-2  sm:w-[98%]"
-        initial={{ y: 10, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{  duration: 0.2 }}
-        >
-            <div className="top flex justify-between">
-            <div className="hover:text-slate-600 cursor-pointer max-w-[85%] sm:text-[16px]" onClick={() => {router.push('/wisdom')
-                   updateWisdom(props.id,props.data,props.createdBy,props.votes)
-               
-                
-            }}>
-            {props.data}</div> 
-            <div >
-            {
-                voteUpdate ?  
-                 <div>
-                    <Image src={Arrow} className="w-[20px] h-[20px] "  alt="heart" />
-                    <div className="text-[14px] text-center text-slate-400">{votes === 0 ?'': votes}</div>
-                 </div>
-                
-                 :
-                 <div className="cursor-pointer">
-                     <Image src={Heart} className="h-[22px] w-[22px] sm:w-[20px] sm:h-[20px]" alt="heart" onClick={addVotes}/>
-                     <div className="text-[12px] text-center text-slate-400 sm:text-[10px]">{votes === 0 ?'': votes}</div>
-                </div> 
-            }
-           
-            </div>
-            </div>
-            
-
-            {/* bottom */}
-            <div className="flex gap-4 text-[12px] text-slate-500 items-center ">
-                <div ><span className="text-[16px] sm:text-[12px]">🥷 </span>@{props.createdBy}</div>
-                {/* <div className="cursor-pointer"><span className="text-[16px]">🫶🏼</span>Upvote {props.votes}</div> */}
-                <div className="cursor-pointer sm:text-[12px]" onClick={() => {router.push('/wisdom')
-                     updateWisdom(props.id,props.data,props.createdBy,props.votes)
-                }}><span className="text-[16px] sm:text-[12px]">👀 </span>comments{props.comments}</div>
-            </div>
-
-
-        </motion.div>
-    )
-}
-
-

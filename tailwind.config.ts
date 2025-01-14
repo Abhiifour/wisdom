@@ -12,7 +12,7 @@ export default {
         "secondary":"#E8C876",
         "primary":"#E8BE68",
         "border-color":"#BFBFBF",
-        "bg-color": "#E8E8E8",
+        "bg-color": "#e3e3e3",
         foreground: "var(--foreground)",
       },
       screens: {
@@ -21,6 +21,10 @@ export default {
         'md': { 'max': '1023px' }, // Medium screens and below
         'sm': { 'max': '767px' },  // Small screens and below
       },
+      fontFamily:{
+        "Inter":["Inter"],
+        "Nunito":['Nunito']
+      }
     },
   },
   plugins: [],
