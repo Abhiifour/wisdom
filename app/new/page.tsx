@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { setWisdom } from "../actions/wisdom";
+import { setWisdom } from "../../actions/wisdom";
 import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";

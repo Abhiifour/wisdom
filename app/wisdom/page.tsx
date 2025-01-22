@@ -4,7 +4,7 @@ import Comments from "@/components/Comment";
 import { useRouter } from "next/navigation";
 import { useWisdomState } from "../store/atoms/wisdomAtom";
 import {  useEffect, useState } from "react";
-import { addComment, getComments } from "../actions/wisdom";
+import { addComment, getComments } from "../../actions/wisdom";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { MdOutlineArrowBackIos } from "react-icons/md";
@@ -48,7 +48,7 @@ export default function Wisdom(){
              {/* Wisdom */}
             <div className="w-full p-6 border  rounded-2xl bg-white shadow-md flex flex-col gap-4 sm:gap-2">
             <div className="top flex justify-between">
-            <div className="hover:text-slate-600 text-slate-600 text-[16px] leading-3  " >
+            <div className="hover:text-slate-600 text-slate-600 text-[16px]  " >
                 {wisdomState.data}
             <div> 
            
