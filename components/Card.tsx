@@ -5,7 +5,7 @@ import Heart from "@/public/heartO.png"
 import Arrow from "@/public/arrow.png"
 import { useWisdomState } from "@/app/store/atoms/wisdomAtom"
 import Image from "next/image"
-import { addVote } from "@/app/actions/wisdom"
+import { addVote } from "@/actions/wisdom"
 import { useState } from "react"
 import { BiSolidLike } from "react-icons/bi";
 import { FaAnglesUp } from "react-icons/fa6";

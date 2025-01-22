@@ -1,6 +1,6 @@
 
 import Card from "@/components/Card";
-import { getWisdom } from "./actions/wisdom";
+import { getWisdom } from "../actions/wisdom";
 
 
 export default async function Home() {
